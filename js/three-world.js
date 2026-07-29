@@ -29,7 +29,7 @@
   renderer.setClearColor(0x05070d, 1);
 
   var scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x070b14, 0.0090);
+  scene.fog = new THREE.FogExp2(0x070b14, 0.0060);
 
   var camera = new THREE.PerspectiveCamera(58, 1, 0.1, 1200);
   camera.position.set(0, 2.6, 24);
@@ -74,7 +74,7 @@
     }
     var g = new THREE.BufferGeometry();
     g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-    scene.add(new THREE.Points(g, new THREE.PointsMaterial({ color: 0x9fb4d8, size: 1.4, sizeAttenuation: false, transparent: true, opacity: 0.85, map: glowTex("#cdd8f0"), depthWrite: false })));
+    scene.add(new THREE.Points(g, new THREE.PointsMaterial({ color: 0x9fb4d8, size: 1.4, sizeAttenuation: false, transparent: true, opacity: 0.85, map: glowTex("#cdd8f0"), depthWrite: false, fog: false })));
   })();
 
   /* ------------------------------------------------------------ LIGHTS */
@@ -136,7 +136,7 @@
     // lamp glows
     var g = new THREE.BufferGeometry();
     g.setAttribute("position", new THREE.BufferAttribute(new Float32Array(lampPos), 3));
-    scene.add(new THREE.Points(g, new THREE.PointsMaterial({ color: 0xffc06a, size: 3.4, map: glowTex("#ffcf8a"), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: 0.95 })));
+    scene.add(new THREE.Points(g, new THREE.PointsMaterial({ color: 0xffc06a, size: 3.4, map: glowTex("#ffcf8a"), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: 0.95, fog: false })));
   })();
 
   /* --------------------------------------------------------- SKYLINE */
@@ -165,7 +165,7 @@
     }
     mesh.count = idx; scene.add(mesh);
     var g = new THREE.BufferGeometry(); g.setAttribute("position", new THREE.BufferAttribute(new Float32Array(winPts), 3));
-    scene.add(new THREE.Points(g, new THREE.PointsMaterial({ color: 0x9fb0d8, size: 1.1, sizeAttenuation: true, transparent: true, opacity: 0.5, depthWrite: false, map: glowTex("#c7d2ee"), blending: THREE.AdditiveBlending })));
+    scene.add(new THREE.Points(g, new THREE.PointsMaterial({ color: 0x9fb0d8, size: 1.1, sizeAttenuation: true, transparent: true, opacity: 0.5, depthWrite: false, map: glowTex("#c7d2ee"), blending: THREE.AdditiveBlending, fog: false })));
   })();
 
   /* ------------------------------------------------- DISTANT MOUNTAINS */
@@ -181,7 +181,7 @@
   /* ------------------------------------------------- VEHICLE STREAKS */
   var streaks = [];
   function buildStreaks(color, count, lanes, dir, speedBase, opacity) {
-    var mat = new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: opacity, blending: THREE.AdditiveBlending, depthWrite: false });
+    var mat = new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: opacity, blending: THREE.AdditiveBlending, depthWrite: false, fog: false });
     var mesh = new THREE.InstancedMesh(new THREE.BoxGeometry(0.4, 0.16, 3.4), mat, count);
     var data = [];
     for (var i = 0; i < count; i++) {
@@ -386,7 +386,7 @@
     var tx = new THREE.CanvasTexture(c); _tex[hex] = tx; return tx;
   }
   function glowSprite(hex, scale, x, y, z) {
-    var sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex(hex), transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, opacity: 0.95 }));
+    var sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex(hex), transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, opacity: 0.95, fog: false }));
     sp.scale.setScalar(scale); sp.position.set(x, y, z); return sp;
   }
 })();
