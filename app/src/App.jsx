@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import Nav from "./components/Nav.jsx";
 import YardCanvas from "./components/YardCanvas.jsx";
+import CoverageNet from "./components/CoverageNet.jsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -263,7 +264,7 @@ export default function App() {
                 <div className="route" data-reveal><span className="from">ATLANTA</span><span className="dots" /><span>DENVER</span><span className="eta">19h</span></div>
               </div>
             </div>
-            <div className="bignum" data-reveal>48<small>STATES · COAST TO COAST · ONE NETWORK</small></div>
+            <CoverageNet />
           </div>
         </section>
 
