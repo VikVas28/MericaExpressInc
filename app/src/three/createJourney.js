@@ -126,17 +126,72 @@ export function createJourney(canvas) {
   }
   const inGrid = new THREE.GridHelper(32, 16, 0x3a3320, 0x1a1610); inGrid.material.transparent = true; inGrid.material.opacity = 0.4; inGrid.position.set(0, 0.02, whZ); warehouse.add(inGrid);
 
-  /* --------------------------------------------------------- the TRUCK */
+  /* ------------------------------ the TRUCK — American conventional rig
+     Built facing -Z (grille/headlights lead into the scene), so the chase
+     camera behind (+Z) sees the long hood, stacks and 53' trailer in profile. */
+  const CHROME = 0xf1ecda, TIRE = 0x0a0a0a;
+  const solidMesh = (geo, color, op = 1, add = false) =>
+    new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color, transparent: op < 1 || add, opacity: op, blending: add ? THREE.AdditiveBlending : THREE.NormalBlending }));
+  const cyl = (r, h, color, op = 1) => solidMesh(new THREE.CylinderGeometry(r, r, h, 16), color, op);
+  function amberDot(x, y, z, s = 0.9) { const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: glow("#ffcf7a"), transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, fog: false })); sp.scale.setScalar(s); sp.position.set(x, y, z); return sp; }
+
   const truck = new THREE.Group();
-  const trailer = block(2.7, 3.1, 9, WIRE_HI, 0.7, 0.62); trailer.position.set(0, 2.6, 3.4); truck.add(trailer);
-  const cab = block(2.6, 2.6, 2.8, GREEN, 0.95, 0.6, true); cab.position.set(0, 2.35, -2.6); truck.add(cab);
-  const hood = block(2.55, 1.5, 1.8, GREEN, 0.85, 0.6, true); hood.position.set(0, 1.65, -4.1); truck.add(hood);
   const wheels = [];
-  [-4, -2.4, 1.6, 3.2, 4.8].forEach((z) => [-1.32, 1.32].forEach((x) => { const w = block(0.5, 1.4, 1.4, WIRE, 0.5, 0.8); w.position.set(x, 0.75, z); truck.add(w); wheels.push(w); }));
-  const headL = new THREE.PointLight(0xffe6b0, 0, 48, 2); headL.position.set(0, 1.5, -6); truck.add(headL);
-  [-0.9, 0.9].forEach((x) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: glow("#fff0c8"), transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, fog: false })); s.scale.setScalar(1.7); s.position.set(x, 1.5, -5.2); truck.add(s); });
-  truck.rotation.y = Math.PI;
-  world.add(truck);
+
+  // chassis rail
+  const chassis = solidMesh(new THREE.BoxGeometry(2.0, 0.4, 17), 0x15130f); chassis.position.set(0, 1.0, 2.2); truck.add(chassis);
+
+  // ---- 53' trailer (dry van) with green brand band + logo mark ----
+  const trailer = block(2.7, 3.5, 11, WIRE_HI, 0.5, 0.6); trailer.position.set(0, 2.95, 6.6); truck.add(trailer);
+  [-1.37, 1.37].forEach((x) => {
+    truck.add(solidMesh(new THREE.BoxGeometry(0.02, 0.85, 7.5), GREEN, 0.85, true).translateX(x).translateY(3.2).translateZ(6.4));
+    truck.add(solidMesh(new THREE.BoxGeometry(0.03, 1.15, 1.15), GREEN, 0.5, true).translateX(x).translateY(3.15).translateZ(2.6));
+  });
+  [-1, 1].forEach((x) => { const lg = solidMesh(new THREE.BoxGeometry(0.16, 1.6, 0.16), 0x1a1712); lg.position.set(x, 0.8, 2.4); truck.add(lg); });
+  // trailer roof marker lights
+  [-1, 0, 1].forEach((x) => truck.add(amberDot(x, 4.75, 1.4, 0.5)));
+
+  // ---- tractor: long hood, cab, sleeper (green rig) ----
+  const hood = block(2.35, 1.7, 3.6, GREEN, 0.85, 0.55, true); hood.position.set(0, 1.75, -5.4); truck.add(hood);
+  const cab = block(2.6, 2.95, 2.5, GREEN, 0.9, 0.55, true); cab.position.set(0, 2.6, -2.9); truck.add(cab);
+  const sleeper = block(2.6, 3.05, 2.8, GREEN, 0.8, 0.55, true); sleeper.position.set(0, 2.75, -0.5); truck.add(sleeper);
+  // windshield + roof sun visor
+  truck.add(solidMesh(new THREE.BoxGeometry(2.4, 1.2, 0.15), 0x0a1a22, 0.85).translateY(3.1).translateZ(-4.15));
+  truck.add(solidMesh(new THREE.BoxGeometry(2.7, 0.16, 0.6), CHROME, 0.85).translateY(4.15).translateZ(-4.2));
+  // chrome grille + vertical bars + bumper
+  truck.add(block(2.25, 1.6, 0.22, CHROME, 0.95, 0.5, true).translateY(1.65).translateZ(-7.2));
+  for (let i = -3; i <= 3; i++) truck.add(solidMesh(new THREE.BoxGeometry(0.05, 1.4, 0.05), CHROME, 0.9, true).translateX(i * 0.28).translateY(1.65).translateZ(-7.32));
+  truck.add(solidMesh(new THREE.BoxGeometry(2.8, 0.5, 0.35), CHROME, 0.95).translateY(0.75).translateZ(-7.35));
+  // twin exhaust stacks
+  [-1.45, 1.45].forEach((x) => { const st = cyl(0.12, 4.4, CHROME, 0.95); st.position.set(x, 3.0, -1.2); truck.add(st); });
+  // fuel tanks (chrome cylinders along the frame)
+  [-1.52, 1.52].forEach((x) => { const tk = cyl(0.5, 1.9, 0x9a8f7a, 0.9); tk.rotation.x = Math.PI / 2; tk.position.set(x, 0.95, -2.7); truck.add(tk); });
+  // mirrors
+  [-1.5, 1.5].forEach((x) => {
+    truck.add(solidMesh(new THREE.BoxGeometry(0.05, 0.85, 0.05), 0x2a2a26).translateX(x).translateY(3.3).translateZ(-3.6));
+    truck.add(solidMesh(new THREE.BoxGeometry(0.06, 0.7, 0.32), 0x111111, 1).translateX(x).translateY(3.15).translateZ(-3.6));
+  });
+  // cab roof clearance lights (classic American 5-light bar)
+  [-0.8, -0.4, 0, 0.4, 0.8].forEach((x) => truck.add(amberDot(x, 4.15, -1.9, 0.42)));
+
+  // headlights + point light (lead the way)
+  const headL = new THREE.PointLight(0xffe6b0, 0, 52, 2); headL.position.set(0, 1.4, -8); truck.add(headL);
+  [-0.86, 0.86].forEach((x) => { truck.add(solidMesh(new THREE.SphereGeometry(0.22, 12, 12), 0xfff2cf, 1, true).translateX(x).translateY(1.4).translateZ(-7.15));
+    const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: glow("#fff0c8"), transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, fog: false })); s.scale.setScalar(1.9); s.position.set(x, 1.4, -7.4); truck.add(s); });
+  // rear tail lights
+  [-1.1, 1.1].forEach((x) => truck.add(solidMesh(new THREE.BoxGeometry(0.14, 0.5, 0.1), 0xff2a20, 1, true).translateX(x).translateY(1.6).translateZ(12.05)));
+
+  // ---- wheels (steer + drive tandem + trailer tandem) ----
+  function makeWheel(x, z) {
+    const g = new THREE.Group();
+    const tire = cyl(0.72, 0.52, TIRE); tire.rotation.z = Math.PI / 2;
+    const hub = cyl(0.3, 0.54, CHROME, 0.9); hub.rotation.z = Math.PI / 2;
+    const spoke = solidMesh(new THREE.BoxGeometry(0.09, 1.2, 0.09), CHROME, 0.8);
+    g.add(tire, hub, spoke); g.position.set(x, 0.72, z); truck.add(g); wheels.push(g);
+  }
+  [-6.2, -0.9, 0.6, 8.6, 10.1].forEach((z) => { makeWheel(-1.4, z); makeWheel(1.4, z); });
+
+  world.add(truck);   // rotation.y = 0 → grille faces -Z (travel direction)
 
   scene.add(new THREE.AmbientLight(0x3a3020, 0.8));
 
@@ -162,15 +217,16 @@ export function createJourney(canvas) {
 
     const tz = STREET_START + (TRUCK_END - STREET_START) * e;
     truck.position.set(0, 0, tz);
-    wheels.forEach((w) => (w.rotation.x -= dt * 10 * (0.4 + target)));
+    wheels.forEach((w) => (w.rotation.x -= dt * 9 * (0.5 + target)));
 
-    const distToDoor = tz - DOOR_Z;
-    door.position.y = clamp01((26 - distToDoor) / 26) * (DOOR_H - 0.2);
-    headL.intensity = clamp01((30 - distToDoor) / 30) * 1.5;
+    const frontZ = tz - 7.35;
+    const distToDoor = frontZ - DOOR_Z;
+    door.position.y = clamp01((22 - distToDoor) / 22) * (DOOR_H - 0.2);
+    headL.intensity = clamp01((28 - distToDoor) / 28) * 1.6;
 
-    const wantPos = new THREE.Vector3(5.5, 4.6 + e * 0.6, tz + 15);
-    const wantLook = new THREE.Vector3(0, 2.6, tz - 6);
-    if (e > 0.82) { const k = smooth(clamp01((e - 0.82) / 0.18)); wantPos.x += (0 - 5.5) * k; wantPos.y += 1.2 * k; }
+    const wantPos = new THREE.Vector3(7, 5.2 + e * 0.8, tz + 21);
+    const wantLook = new THREE.Vector3(0, 2.9, tz + 1);
+    if (e > 0.8) { const k = smooth(clamp01((e - 0.8) / 0.2)); wantPos.x += (1.5 - 7) * k; wantPos.y += 1.4 * k; wantPos.z += -6 * k; }
     camPos.lerp(wantPos, 0.06); camLook.lerp(wantLook, 0.08);
     camera.position.copy(camPos); camera.lookAt(camLook);
 
