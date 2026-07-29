@@ -1,76 +1,71 @@
-# Merica Express Inc — Cinematic freight & logistics site
+# Merica Express Inc — 3D scroll-through website
 
-A full-screen, animated one-page website for **Merica Express Inc**, an American
-trucking & logistics company. Built as a premium, cinematic, scroll-driven
-experience with a real 3D coverage globe.
+An immersive, fully 3D website for **Merica Express Inc**, an American trucking &
+logistics company. Instead of photos, the whole page is a **WebGL night
+interstate you fly down as you scroll** — the camera follows a semi truck,
+rises into an aerial "coverage" view, and settles behind its taillights.
 
 **"America's Freight, Delivered." — Coast to coast, on time, every time.**
 
 ---
 
-## ✨ What's inside
+## ✨ The experience
 
-- **Cinematic hero** with a golden/blue-hour truck film still, parallax scrub and
-  a live WebGL particle atmosphere layer.
-- **Smooth scroll** (Lenis) bridged to **GSAP ScrollTrigger** for scrubbed
-  parallax, staggered text builds and section reveals.
-- **3D coverage globe** — a procedural Three.js dotted Earth with animated
-  freight arcs travelling between US hubs (the "next-level" 3D centrepiece).
-- **Custom cursor**, magnetic buttons, animated counters, infinite marquee and a
-  cinematic grain/vignette layer.
-- **Sections:** Hero · Stats · About · Services (FTL / OTR / Reefer / Expedited) ·
-  Fleet · Coverage globe · Drivers (careers/recruitment) · Process · Contact.
-- Fully **responsive** and **`prefers-reduced-motion`** aware — with no-JS/no-lib
-  fallbacks so content is always readable.
-
-## 🎨 Visuals
-
-The cinematic imagery was generated with **Higgsfield** (Cinema Studio Image 2.5)
-and is served from Higgsfield's public CDN — the URLs are referenced directly in
-`index.html`, so the repo stays lightweight and nothing needs a build step.
-The 3D globe is generated procedurally in the browser (no asset files).
+- **Procedural 3D world** (Three.js): night highway, moving truck, glowing lane
+  lines, street lamps, passing headlight/taillight streaks, city skyline,
+  distant mountains, stars and volumetric fog — all generated in the browser,
+  **no image assets**.
+- **Scroll drives the camera** along a cinematic keyframed path through the
+  world; content **chapters fade in** synced to the camera position:
+  Hero → Services → Coverage (aerial) → Fleet → Drivers → Contact.
+- **Lenis** smooth scroll, custom cursor, magnetic buttons, a scroll progress
+  bar and a preloader.
+- **Progressive & robust:** if WebGL is unavailable or the visitor prefers
+  reduced motion, it gracefully falls back to a clean stacked layout — content
+  stays fully readable.
 
 ## 🚀 Run / Deploy
 
-It's a static site — no build required.
+Static site, no build step.
 
-**Locally:**
 ```bash
-# any static server, e.g.
-python3 -m http.server 8000
-# then open http://localhost:8000
+python3 -m http.server 8000   # then open http://localhost:8000
 ```
 
-**GitHub Pages:** push this branch, then in the repo go to
-**Settings → Pages → Build and deployment → Deploy from a branch**, pick this
-branch and `/ (root)`. Your site goes live at
-`https://<user>.github.io/<repo>/`.
-
-(Works the same on Netlify, Vercel, Cloudflare Pages — just point them at the repo root.)
+**GitHub Pages:** Settings → Pages → *Deploy from a branch* → this branch → `/ (root)`.
+Live URL: `https://<user>.github.io/<repo>/`. It auto-updates on every push.
 
 ## ✏️ Edit before going live
 
-Everything is plain HTML/CSS/JS. The placeholders to replace live in
-`index.html` → **Contact** and **Footer** sections:
+Placeholders to replace are in `index.html` (Contact chapter):
 
-| Placeholder | Where |
+| Placeholder | Meaning |
 |---|---|
-| `(000) 000-0000` | Dispatch phone number |
-| `MC #000000 · DOT #0000000` | Your FMCSA authority numbers |
+| `(000) 000-0000` | Dispatch phone |
+| `MC #000000 · DOT #0000000` | FMCSA authority numbers |
 | `Your City, State` | HQ / terminal address |
-| Stats (`12M+`, `99%`, `48`) | `data-count` attributes in the Stats section |
+| Stats (`12M+`, `99%`) | in the Services chapter |
 
-The contact email `driversnonstop@gmail.com` is already wired into the "Get a
-Quote" form (it opens the visitor's email app, pre-filled) and the footer.
+The email `driversnonstop@gmail.com` is wired into the quote form and contact info.
+
+## 🎚️ Tuning the 3D ride (in `js/three-world.js`)
+
+| Want to change | Where |
+|---|---|
+| Ride length / pace | `scrollSpace.style.height = "880vh"` (bigger = slower) and `TRAVEL` |
+| Camera path / beats | the `KEY[]` keyframe array (position + look-at per progress) |
+| Truck colours | materials in `buildTruck()` (`red`, `silver`) |
+| Fog / night mood | `scene.fog` density and the sky shader colours |
+| Traffic amount | `buildStreaks(...)` counts |
 
 ## 📁 Structure
 
 ```
-index.html            # markup + section content + CDN library tags
-css/styles.css        # design system + all section styling
-js/three-scene.js     # WebGL: hero particles + coverage globe (Three.js)
-js/main.js            # Lenis + GSAP, cursor, counters, reveals, form
+index.html            # nav + chapter overlays + contact form + CDN tags
+css/styles.css        # design system, 3D-overlay layout + stacked fallback
+js/three-world.js     # the WebGL night-highway world + scroll→camera + chapters
+js/main.js            # Lenis, cursor, magnetic buttons, nav, form, preloader
 ```
 
-Libraries (GSAP, ScrollTrigger, Lenis, Three.js) load from CDN at runtime — the
-visitor's browser fetches them, so there are no local dependencies to install.
+Libraries (Three.js, GSAP, Lenis) load from CDN in the visitor's browser — no
+local dependencies to install.
