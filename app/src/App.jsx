@@ -5,6 +5,7 @@ import Lenis from "lenis";
 import Nav from "./components/Nav.jsx";
 import YardCanvas from "./components/YardCanvas.jsx";
 import CoverageNet from "./components/CoverageNet.jsx";
+import KineticLine from "./components/KineticLine.jsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -217,8 +218,43 @@ export default function App() {
         </div>
       </section>
 
+      {/* MANIFESTO — centered statement over the 3D */}
+      <section className="statement center wrap">
+        <div className="statement__inner">
+          <div className="mono eyebrow idx" data-reveal style={{ justifyContent: "center" }}>The standard</div>
+          <h2 data-reveal>We've reinvented how <span className="acc">America moves freight.</span></h2>
+          <p className="lead" data-reveal>One connected network — trucks, terminals and dispatch working as a single system, from first mile to last.</p>
+        </div>
+      </section>
+
       {/* SOLID DECK */}
       <div className="deck">
+        {/* KINETIC TYPOGRAPHY */}
+        <KineticLine eyebrow="Always on" words={["COAST", "TO", "COAST"]} sub="Freight that never stops moving — day, night, and every mile between." />
+
+        {/* PLATFORM */}
+        <section className="section wrap" id="platform">
+          <div className="section__head">
+            <div>
+              <div className="mono eyebrow" data-reveal>How we run</div>
+              <h2 data-reveal style={{ marginTop: "1rem" }}>One system for every load.</h2>
+            </div>
+            <div className="mono" data-reveal>Trucks, terminals and dispatch — connected.</div>
+          </div>
+          <div className="platform__grid">
+            {[
+              ["01", "Live tracking", "Every load visible in real time — ELD + GPS, from pickup to proof of delivery."],
+              ["02", "One dispatch", "AI-assisted planning matches the right truck to every lane, around the clock."],
+              ["03", "Always compliant", "FMCSA authority, cargo & liability insured, safety-first on every mile."],
+            ].map(([no, title, desc]) => (
+              <div className="pcard" data-reveal data-cursor key={no}>
+                <div className="pno">{no}</div>
+                <div><h3>{title}</h3><p>{desc}</p></div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* SERVICES */}
         <section className="section wrap" id="services">
           <div className="section__head">
@@ -302,6 +338,17 @@ export default function App() {
               <div className="perk" data-reveal><b>Newer trucks</b><span>Comfortable, maintained.</span></div>
               <div className="perk" data-reveal><b>24/7 support</b><span>Dispatch that answers.</span></div>
             </div>
+          </div>
+        </section>
+
+        {/* CLOSING */}
+        <section className="section wrap closing">
+          <div className="mono eyebrow" data-reveal style={{ justifyContent: "center", marginBottom: "1.4rem" }}>The bottom line</div>
+          <h2 data-reveal>Built by people who keep <span className="acc">America moving.</span></h2>
+          <p className="lead" data-reveal>Whether you're shipping freight or driving it — Merica Express is the network behind the miles.</p>
+          <div className="cta-row" data-reveal style={{ justifyContent: "center" }}>
+            <a href="#contact" className="btn btn--acc btn--big" data-cursor data-goto="#contact">Get a Quote <Arrow /></a>
+            <a href="#drivers" className="btn btn--ghost btn--big" data-cursor data-goto="#drivers">Drive With Us</a>
           </div>
         </section>
 
