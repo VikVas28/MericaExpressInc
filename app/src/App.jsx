@@ -6,6 +6,7 @@ import Nav from "./components/Nav.jsx";
 import YardCanvas from "./components/YardCanvas.jsx";
 import CoverageNet from "./components/CoverageNet.jsx";
 import KineticLine from "./components/KineticLine.jsx";
+import SpeedHUD from "./components/SpeedHUD.jsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -169,7 +170,13 @@ export default function App() {
       <YardCanvas />
       <div className="yard__scrim" aria-hidden="true" />
 
+      {/* dashboard speedometer intro — scroll to accelerate, then the site opens */}
+      <SpeedHUD />
+
       <Nav />
+
+      {/* scroll room for the speed intro (keeps the site hidden until it "opens") */}
+      <div className="intro-spacer" aria-hidden="true" />
 
       {/* HERO */}
       <header className="hero wrap" id="hero">

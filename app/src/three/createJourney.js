@@ -198,12 +198,16 @@ export function createJourney(canvas) {
   /* --------------------------------------------------- scroll + loop */
   const clock = new THREE.Clock();
   let pj = 0, raf = 0, disposed = false;
-  const camPos = new THREE.Vector3(6, 5, STREET_START + 16);
-  const camLook = new THREE.Vector3(0, 2.5, STREET_START);
+  const camPos = new THREE.Vector3(0.2, 3.0, STREET_START - 3);
+  const camLook = new THREE.Vector3(0, 2.2, STREET_START - 60);
 
   function journeyEndPx() {
     const deck = document.querySelector(".deck");
     return Math.max(1, deck ? deck.offsetTop - window.innerHeight * 0.55 : document.documentElement.scrollHeight * 0.6);
+  }
+  function introEndPx() {
+    const s = document.querySelector(".intro-spacer");
+    return Math.max(1, s ? s.offsetHeight : window.innerHeight * 1.5);
   }
   function resize() { const w = window.innerWidth, h = window.innerHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); }
   window.addEventListener("resize", resize); resize();
@@ -211,23 +215,34 @@ export function createJourney(canvas) {
   function frame() {
     if (disposed) return;
     const dt = Math.min(clock.getDelta(), 0.05), t = clock.elapsedTime;
-    const target = clamp01(window.scrollY / journeyEndPx());
+    const y = window.scrollY;
+
+    // intro (dashboard) progress -> speedometer HUD reads this
+    const introP = clamp01(y / introEndPx());
+    window.__mexSpeed = { introP: introP, speed: Math.round(introP * 85), active: introP < 0.999 };
+
+    const target = clamp01(y / journeyEndPx());
     pj += (target - pj) * 0.10;
     const e = smooth(pj);
 
     const tz = STREET_START + (TRUCK_END - STREET_START) * e;
     truck.position.set(0, 0, tz);
-    wheels.forEach((w) => (w.rotation.x -= dt * 9 * (0.5 + target)));
+    wheels.forEach((w) => (w.rotation.x -= dt * 9 * (0.6 + target * 1.6)));
 
     const frontZ = tz - 7.35;
     const distToDoor = frontZ - DOOR_Z;
     door.position.y = clamp01((22 - distToDoor) / 22) * (DOOR_H - 0.2);
-    headL.intensity = clamp01((28 - distToDoor) / 28) * 1.6;
+    headL.intensity = clamp01((28 - distToDoor) / 28) * 1.6 + (introP < 1 ? 0.7 : 0);
 
-    const wantPos = new THREE.Vector3(7, 5.2 + e * 0.8, tz + 21);
-    const wantLook = new THREE.Vector3(0, 2.9, tz + 1);
-    if (e > 0.8) { const k = smooth(clamp01((e - 0.8) / 0.2)); wantPos.x += (1.5 - 7) * k; wantPos.y += 1.4 * k; wantPos.z += -6 * k; }
-    camPos.lerp(wantPos, 0.06); camLook.lerp(wantLook, 0.08);
+    // POV from inside the cab (intro) → pull back to chase cam (site opens)
+    const mode = smooth(clamp01((introP - 0.72) / 0.28));
+    let cx = 7, cy = 5.2 + e * 0.8, cz = tz + 21, lx = 0, ly = 2.9, lz = tz + 1;
+    if (e > 0.8) { const k = smooth(clamp01((e - 0.8) / 0.2)); cx += (1.5 - 7) * k; cy += 1.4 * k; cz += -6 * k; }
+    const pvx = 0.2, pvy = 3.0, pvz = tz - 3.0, plx = 0, ply = 2.2, plz = tz - 60;
+    const wantPos = new THREE.Vector3(pvx + (cx - pvx) * mode, pvy + (cy - pvy) * mode, pvz + (cz - pvz) * mode);
+    const wantLook = new THREE.Vector3(plx + (lx - plx) * mode, ply + (ly - ply) * mode, plz + (lz - plz) * mode);
+    const amt = (mode > 0.001 && mode < 0.999) ? 0.11 : 0.06;
+    camPos.lerp(wantPos, amt); camLook.lerp(wantLook, amt);
     camera.position.copy(camPos); camera.lookAt(camLook);
 
     world.rotation.y = Math.sin(t * 0.04) * 0.006;
