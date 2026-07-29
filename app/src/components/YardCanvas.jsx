@@ -1,13 +1,13 @@
 import { useEffect, useRef } from "react";
-import { createYard } from "../three/createYard.js";
+import { createJourney } from "../three/createJourney.js";
 
 export default function YardCanvas() {
   const ref = useRef(null);
 
   useEffect(() => {
     if (!ref.current) return;
-    const yard = createYard(ref.current);
-    return () => { if (yard && yard.dispose) yard.dispose(); };
+    const j = createJourney(ref.current);
+    return () => { if (j && j.dispose) j.dispose(); };
   }, []);
 
   return (

@@ -194,25 +194,25 @@ export default function App() {
       {/* STATEMENTS — text changes as the camera moves through the yard */}
       <section className="statement wrap">
         <div className="statement__inner">
-          <div className="mono eyebrow idx" data-reveal>01 — Dispatch</div>
-          <h2 data-reveal>One unified dispatch, running <span className="acc">every load.</span></h2>
-          <p className="lead" data-reveal>AI-assisted planning, live ELD tracking and proactive updates — from pickup to proof of delivery, on one platform.</p>
+          <div className="mono eyebrow idx" data-reveal>01 — On the road</div>
+          <h2 data-reveal>Every load starts on the <span className="acc">open road.</span></h2>
+          <p className="lead" data-reveal>From dock to dock, we run the miles so your freight never waits — day, night and every mile between.</p>
         </div>
       </section>
 
       <section className="statement right wrap">
         <div className="statement__inner">
-          <div className="mono idx" data-reveal>02 — Network</div>
-          <h2 data-reveal>Configured to <span className="acc">every lane</span> in your network.</h2>
-          <p className="lead" data-reveal style={{ marginLeft: "auto" }}>Dry van, reefer and expedited capacity — matched to the freight, coast to coast.</p>
+          <div className="mono idx" data-reveal>02 — Dispatch</div>
+          <h2 data-reveal>One unified dispatch, <span className="acc">coast to coast.</span></h2>
+          <p className="lead" data-reveal style={{ marginLeft: "auto" }}>AI-assisted planning and live ELD tracking — from pickup to proof of delivery, on one platform.</p>
         </div>
       </section>
 
       <section className="statement wrap">
         <div className="statement__inner">
-          <div className="mono eyebrow idx" data-reveal>03 — Uptime</div>
-          <h2 data-reveal>Compliant, tracked, and <span className="acc">always on time.</span></h2>
-          <p className="lead" data-reveal>FMCSA authority, cargo &amp; liability insured, and a live dispatch desk that never sleeps.</p>
+          <div className="mono eyebrow idx" data-reveal>03 — The terminal</div>
+          <h2 data-reveal>Into the network — <span className="acc">handled &amp; delivered.</span></h2>
+          <p className="lead" data-reveal>Straight into our terminals: cross-docked, stored and moved again — compliant, insured and tracked end to end.</p>
         </div>
       </section>
 
