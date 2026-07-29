@@ -8,3 +8,4 @@ Thumbs.db
 # Node (not required, but ignored if you add tooling later)
 node_modules/
 dist/
+app/node_modules
