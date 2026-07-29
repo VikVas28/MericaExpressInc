@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merica Express Inc — America's Freight, Delivered</title>
+  <meta name="description" content="Merica Express Inc is a nationwide American trucking & logistics company. Full truckload, cross-country OTR, refrigerated and expedited freight — coast to coast, on time, every time. Drivers always wanted." />
+  <meta name="theme-color" content="#070a10" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Merica Express Inc — America's Freight, Delivered" />
+  <meta property="og:description" content="Nationwide trucking & logistics. FTL, cross-country OTR, reefer and expedited freight — coast to coast, on time, every time." />
+  <meta property="og:image" content="https://d8j0ntlcm91z4.cloudfront.net/user_3H0Q5FRgaFzyCncc99nM4YfPaVz/hf_20260729_064206_88980a1a-7a16-45ef-a321-16591528e1a5.png" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23070a10'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23e4322b'/%3E%3C/svg%3E" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Grain / vignette -->
+  <div class="fx-grain" aria-hidden="true"></div>
+  <div class="fx-vignette" aria-hidden="true"></div>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__inner">
+      <div class="preloader__mark">MERICA<b>·</b>EXPRESS</div>
+      <div class="preloader__bar"><span id="preBar"></span></div>
+      <div class="preloader__pct"><em>LOADING FREIGHT</em><em id="prePct">0%</em></div>
+    </div>
+  </div>
+  <div class="preloader__curtain" id="curtain" aria-hidden="true"></div>
+
+  <!-- Nav -->
+  <nav class="nav" id="nav">
+    <a class="brand" href="#top" data-cursor><span class="dot"></span>MERICA<b>·</b>EXPRESS</a>
+    <div class="nav__links">
+      <a href="#services" class="hide-sm" data-cursor>Services</a>
+      <a href="#fleet" class="hide-sm" data-cursor>Fleet</a>
+      <a href="#coverage" class="hide-sm" data-cursor>Coverage</a>
+      <a href="#drivers" class="hide-sm" data-cursor>Drive With Us</a>
+      <a href="#contact" class="btn btn--primary" data-cursor>Get a Quote
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </nav>
+
+  <main id="top">
+
+    <!-- ============================================================ HERO -->
+    <header class="hero" id="hero">
+      <div class="hero__media" id="heroMedia">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3H0Q5FRgaFzyCncc99nM4YfPaVz/hf_20260729_064206_88980a1a-7a16-45ef-a321-16591528e1a5.png" alt="Modern American semi truck on an open interstate highway at dusk" fetchpriority="high" />
+      </div>
+      <div class="hero__scrim"></div>
+      <canvas id="hero-canvas"></canvas>
+
+      <div class="hero__content wrap">
+        <span class="eyebrow hero__kicker" data-reveal>Nationwide Trucking &amp; Logistics · Est. USA</span>
+        <h1 class="hero__title" aria-label="America's freight, delivered">
+          <span class="line"><span data-hero-line>AMERICA'S</span></span>
+          <span class="line"><span data-hero-line>FREIGHT,</span></span>
+          <span class="line"><span data-hero-line class="accent">DELIVERED.</span></span>
+        </h1>
+        <div class="hero__sub">
+          <p data-reveal>Coast to coast, on time, every time. Merica Express moves full truckloads across all 48 states with a modern fleet and drivers who never stop.</p>
+          <div class="hero__cta" data-reveal>
+            <a href="#contact" class="btn btn--primary btn--big" data-cursor>Ship Freight
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#drivers" class="btn btn--ghost btn--big" data-cursor>Drive With Us</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__scroll" aria-hidden="true"><span>SCROLL</span><span class="rail"></span></div>
+    </header>
+
+    <!-- Marquee -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track" id="marquee">
+        <span>FULL TRUCKLOAD <i>◆</i> CROSS-COUNTRY OTR <i>◆</i> REFRIGERATED <i>◆</i> EXPEDITED <i>◆</i> 48 STATES <i>◆</i> 24/7 DISPATCH <i>◆</i></span>
+        <span>FULL TRUCKLOAD <i>◆</i> CROSS-COUNTRY OTR <i>◆</i> REFRIGERATED <i>◆</i> EXPEDITED <i>◆</i> 48 STATES <i>◆</i> 24/7 DISPATCH <i>◆</i></span>
+      </div>
+    </div>
+
+    <!-- =========================================================== STATS -->
+    <section class="stats" id="stats" aria-label="Company figures">
+      <div class="stat"><div class="stat__num" data-count="12" data-suffix="M+"><span>0</span><span class="suf">M+</span></div><div class="stat__label">Miles driven / year</div></div>
+      <div class="stat"><div class="stat__num" data-count="99" data-suffix="%"><span>0</span><span class="suf">%</span></div><div class="stat__label">On-time delivery</div></div>
+      <div class="stat"><div class="stat__num" data-count="48" data-suffix=""><span>0</span><span class="suf"></span></div><div class="stat__label">States covered</div></div>
+      <div class="stat"><div class="stat__num" data-count="24" data-suffix="/7"><span>0</span><span class="suf">/7</span></div><div class="stat__label">Live dispatch</div></div>
+    </section>
+
+    <!-- =========================================================== ABOUT -->
+    <section class="section" id="about">
+      <div class="wrap about">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow" data-reveal>Who we are</span>
+            <h2 class="h-md" data-reveal style="margin-top:1.2rem">Built on the American road — and the people who own it.</h2>
+          </div>
+          <p class="lead" data-reveal>Merica Express Inc is a nationwide carrier moving freight the way it should move: fast, tracked, and handled by professionals. From a single pallet-tight load to coast-to-coast lanes, we treat every mile like our reputation depends on it — because it does.</p>
+          <ul class="about__list">
+            <li data-reveal><span class="tick">▹</span><span><b>Modern, maintained fleet</b> — late-model tractors and trailers, inspected and road-ready.</span></li>
+            <li data-reveal><span class="tick">▹</span><span><b>Real-time visibility</b> — ELD tracking and proactive updates from pickup to POD.</span></li>
+            <li data-reveal><span class="tick">▹</span><span><b>Fully compliant</b> — FMCSA authority, cargo &amp; liability insured, safety first.</span></li>
+          </ul>
+        </div>
+        <div class="about__media" data-reveal>
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3H0Q5FRgaFzyCncc99nM4YfPaVz/hf_20260729_064337_32f17758-820d-4e59-b7f4-c55fc4d9b0d7.png" alt="Aerial view of a semi truck crossing the country at golden hour" loading="lazy" />
+          <span class="about__badge">Coast · to · Coast</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== SERVICES -->
+    <section class="section" id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal>What we haul</span>
+          <h2 class="h-md" data-reveal style="margin-top:1.2rem">Four ways we keep your freight moving.</h2>
+        </div>
+        <div class="services__grid">
+          <article class="service" data-reveal data-cursor>
+            <div class="service__img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3H0Q5FRgaFzyCncc99nM4YfPaVz/hf_20260729_064211_6396b207-fb32-4ae4-8ec4-2644a282e2f3.png" alt="" loading="lazy" /></div>
+            <div class="service__no">01 / FTL</div>
+            <div class="service__body">
+              <h3>Full Truckload</h3>
+              <p>Your freight, your trailer, one straight shot. Dedicated capacity with no stops and no compromises.</p>
+            </div>
+            <div class="service__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+          </article>
+
+          <article class="service" data-reveal data-cursor>
+            <div class="service__img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3H0Q5FRgaFzyCncc99nM4YfPaVz/hf_20260729_064337_32f17758-820d-4e59-b7f4-c55fc4d9b0d7.png" alt="" loading="lazy" /></div>
+            <div class="service__no">02 / OTR</div>
+            <div class="service__body">
+              <h3>Cross-Country</h3>
+              <p>Long-haul, over-the-road lanes from coast to coast. Team-driver options when the clock is everything.</p>
+            </div>
+            <div class="service__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+          </article>
+
+          <article class="service" data-reveal data-cursor>
+            <div class="service__img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3H0Q5FRgaFzyCncc99nM4YfPaVz/hf_20260729_064335_f22e0151-e217-4c6e-b2d2-45861f5d7c1b.png" alt="" loading="lazy" /></div>
+            <div class="service__no">03 / REEFER</div>
+            <div class="service__body">
+              <h3>Refrigerated</h3>
+              <p>Temperature-controlled from dock to dock. Food, pharma and sensitive freight kept exactly where it needs to be.</p>
+            </div>
+            <div class="service__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+          </article>
+
+          <article class="service" data-reveal data-cursor>
+            <div class="service__img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3H0Q5FRgaFzyCncc99nM4YfPaVz/hf_20260729_064206_e4a953ab-5f2a-4465-b5e6-ce33e286e71a.png" alt="" loading="lazy" /></div>
+            <div class="service__no">04 / HOT</div>
+            <div class="service__body">
+              <h3>Expedited</h3>
+              <p>Time-critical and can't-be-late. Direct, expedited runs with live tracking and a guaranteed window.</p>
+            </div>
+            <div class="service__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================== FLEET -->
+    <section class="section fleet" id="fleet">
+      <div class="wrap fleet__grid">
+        <div class="fleet__media" data-reveal>
+          <div class="fleet__glow"></div>
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3H0Q5FRgaFzyCncc99nM4YfPaVz/hf_20260729_064209_c5f88c36-7c6a-4725-b828-dff71635fc5d.png" alt="Modern red American semi truck studio shot" loading="lazy" id="fleetImg" />
+        </div>
+        <div>
+          <div class="section-head">
+            <span class="eyebrow" data-reveal>The equipment</span>
+            <h2 class="h-md" data-reveal style="margin-top:1.2rem">A fleet that's ready before the load is.</h2>
+          </div>
+          <p class="lead" data-reveal>Every tractor in our fleet is late-model, telematics-equipped and preventative-maintenance managed. Dry van, reefer and specialized trailers — matched to your freight, not the other way around.</p>
+          <div class="fleet__specs">
+            <div class="spec" data-reveal><b>500+</b><span>Horsepower class 8</span></div>
+            <div class="spec" data-reveal><b>53'</b><span>Dry van &amp; reefer</span></div>
+            <div class="spec" data-reveal><b>ELD</b><span>Full compliance</span></div>
+            <div class="spec" data-reveal><b>GPS</b><span>Real-time tracking</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== COVERAGE -->
+    <section class="section coverage" id="coverage">
+      <div class="wrap">
+        <div class="coverage__grid">
+          <div>
+            <div class="section-head">
+              <span class="eyebrow" data-reveal>Where we run</span>
+              <h2 class="h-md" data-reveal style="margin-top:1.2rem">One network. <span class="text-red">Every</span> lane.</h2>
+            </div>
+            <p class="lead" data-reveal>From the ports of the West Coast to the docks of the Northeast, our lanes cover the whole map. Live dispatch keeps loads rolling around the clock.</p>
+            <div class="coverage__routes">
+              <div class="route-row" data-reveal><span class="from">LOS ANGELES</span><span class="dots"></span><span>NEW YORK</span><span class="eta">41h</span></div>
+              <div class="route-row" data-reveal><span class="from">DALLAS</span><span class="dots"></span><span>CHICAGO</span><span class="eta">15h</span></div>
+              <div class="route-row" data-reveal><span class="from">ATLANTA</span><span class="dots"></span><span>MIAMI</span><span class="eta">10h</span></div>
+              <div class="route-row" data-reveal><span class="from">SEATTLE</span><span class="dots"></span><span>DENVER</span><span class="eta">20h</span></div>
+            </div>
+          </div>
+          <div class="globe-wrap" data-reveal>
+            <canvas id="globe-canvas"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= DRIVERS -->
+    <section class="section drivers" id="drivers">
+      <div class="wrap drivers__inner">
+        <div>
+          <span class="eyebrow" data-reveal>Careers · Now hiring</span>
+          <h2 class="drivers__title" data-reveal style="margin-top:1.2rem">DRIVERS<br><em>NONSTOP.</em></h2>
+          <p class="lead" data-reveal style="margin-top:1.4rem">We're always looking for CDL-A drivers who take pride in the road. Consistent miles, home time that's actually real, and a company that has your back at every stop.</p>
+          <div class="drivers__perks">
+            <div class="perk" data-reveal><b>Top-tier pay</b><span>Competitive per-mile with weekly settlements.</span></div>
+            <div class="perk" data-reveal><b>Real home time</b><span>Routes built around your schedule.</span></div>
+            <div class="perk" data-reveal><b>Newer equipment</b><span>Well-maintained, comfortable tractors.</span></div>
+            <div class="perk" data-reveal><b>24/7 support</b><span>Dispatch and roadside that answer.</span></div>
+          </div>
+          <a href="#contact" class="btn btn--primary btn--big" data-cursor data-reveal>Apply to Drive
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        <div class="drivers__card" data-reveal>
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3H0Q5FRgaFzyCncc99nM4YfPaVz/hf_20260729_064211_6396b207-fb32-4ae4-8ec4-2644a282e2f3.png" alt="Merica Express fleet lineup at the terminal" loading="lazy" />
+          <div class="band"><div class="big">Join the fleet.</div><span style="color:var(--ink-dim)">CDL-A · OTR &amp; Regional · Owner-operators welcome</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= PROCESS -->
+    <section class="section" id="process">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal>How it works</span>
+          <h2 class="h-md" data-reveal style="margin-top:1.2rem">Booked in minutes. Rolling in hours.</h2>
+        </div>
+        <div class="process__steps">
+          <div class="step" data-reveal><div class="step__no">01</div><h3>Get a quote</h3><p>Tell us the lane, the freight and the timeline. We price it fast and straight — no runaround.</p></div>
+          <div class="step" data-reveal><div class="step__no">02</div><h3>We dispatch</h3><p>Your load is matched to the right truck and driver, picked up on schedule and tracked live.</p></div>
+          <div class="step" data-reveal><div class="step__no">03</div><h3>Delivered</h3><p>On-time delivery with proof of delivery in hand. One point of contact, start to finish.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= CTA BAND -->
+    <section class="ctaband" id="cta">
+      <div class="wrap">
+        <h2 data-reveal>READY TO<br>ROLL?</h2>
+        <p class="lead" style="margin-inline:auto" data-reveal>Get a no-nonsense freight quote today — or join a fleet that keeps America moving.</p>
+        <div class="hero__cta" style="justify-content:center" data-reveal>
+          <a href="#contact" class="btn btn--primary btn--big" data-cursor>Get a Quote
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#drivers" class="btn btn--ghost btn--big" data-cursor>Drive With Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= CONTACT -->
+    <section class="section" id="contact">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow" data-reveal>Get in touch</span>
+          <h2 class="h-md" data-reveal style="margin-top:1.2rem">Let's move your freight.</h2>
+        </div>
+        <div class="contact__grid">
+          <div class="contact__info">
+            <div class="line" data-reveal><span>Email</span><b><a href="mailto:driversnonstop@gmail.com" data-cursor>driversnonstop@gmail.com</a></b></div>
+            <div class="line" data-reveal><span>Dispatch</span><b>(000) 000-0000 <small>Replace with your dispatch line</small></b></div>
+            <div class="line" data-reveal><span>Authority</span><b>MC #000000 · DOT #0000000 <small>Add your MC/DOT numbers</small></b></div>
+            <div class="line" data-reveal><span>HQ</span><b>Your City, State <small>Add your terminal address</small></b></div>
+            <div class="line" data-reveal><span>Hours</span><b>Dispatch 24 / 7 / 365</b></div>
+          </div>
+
+          <form class="form" id="quoteForm" novalidate>
+            <div class="row">
+              <div class="field"><label>Name</label><input type="text" name="name" placeholder="Full name" data-cursor required /></div>
+              <div class="field"><label>Email</label><input type="email" name="email" placeholder="you@company.com" data-cursor required /></div>
+            </div>
+            <div class="row">
+              <div class="field"><label>I am a</label>
+                <select name="type" data-cursor>
+                  <option>Shipper — I need freight moved</option>
+                  <option>Driver — I want to drive</option>
+                  <option>Owner-operator</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="field"><label>Lane / Route</label><input type="text" name="lane" placeholder="Origin → Destination" data-cursor /></div>
+            </div>
+            <div class="field"><label>Message</label><textarea name="message" placeholder="Tell us about your freight, timeline, or CDL experience…" data-cursor></textarea></div>
+            <button type="submit" class="btn btn--primary btn--big" data-cursor id="formSubmit">Send Request
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <p class="form__note" id="formNote">This form opens your email app pre-filled — no data leaves your device.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================== FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__top">
+        <div>
+          <div class="footer__brand">MERICA<b>·</b>EXPRESS</div>
+          <p class="lead" style="margin-top:1rem; max-width:36ch">America's freight, delivered. Coast to coast, on time, every time.</p>
+        </div>
+        <div class="footer__cols">
+          <div class="footer__col"><h5>Company</h5><a href="#about" data-cursor>About</a><a href="#services" data-cursor>Services</a><a href="#fleet" data-cursor>Fleet</a><a href="#coverage" data-cursor>Coverage</a></div>
+          <div class="footer__col"><h5>Work</h5><a href="#drivers" data-cursor>Drive With Us</a><a href="#contact" data-cursor>Get a Quote</a><a href="#process" data-cursor>How it works</a></div>
+          <div class="footer__col"><h5>Contact</h5><a href="mailto:driversnonstop@gmail.com" data-cursor>Email us</a><a href="#contact" data-cursor>Dispatch 24/7</a></div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span id="year">2026</span> Merica Express Inc. All rights reserved.</span>
+        <span>Nationwide Trucking &amp; Logistics · USA</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Libraries (loaded by the visitor's browser from CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/three-scene.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
